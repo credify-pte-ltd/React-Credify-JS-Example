@@ -1,13 +1,15 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import logo from './logo.svg';
 import './App.css';
 import { oidcUrl, Config } from "@credify/credify-js";
+import ReactJson from "react-json-view";
 
 // TEST APP configuration
 const config: Config = {
   apiKey: "bufIgxAyApnAVUdeZjyEfWXjbOhrEYTSBe3rGzqNbiDEJDtQBpALMumG2n92Q6lF",
   mode: "sandbox" // If you are using Production, it will be `production`.
 };
+const api = "http://localhost:8000";
 
 function App() {
 
@@ -17,7 +19,8 @@ function App() {
     ["openid", "profile", "phone", "email"],
     config
   );
-  const api = "http://localhost:8000";
+
+  const [claims, setClaims] = useState(null);
 
   useEffect(() => {
     const match = /access_token=([-\.\w]+)&?/g.exec(window.location.hash);
@@ -35,6 +38,7 @@ function App() {
       }).then((result) => {
         result.json().then((json) => {
           console.log(json);
+          setClaims(json);
         });
       }).catch((err) => {
         console.log(err);
@@ -54,6 +58,11 @@ function App() {
         >
           Login with Credify
         </a>
+        {claims && (
+          <div className="Json-wrapper">
+            <ReactJson src={claims!} theme="monokai" />
+          </div>
+        )}
       </header>
     </div>
   );
