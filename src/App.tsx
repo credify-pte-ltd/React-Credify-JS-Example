@@ -20,7 +20,6 @@ function App() {
   const api = "http://localhost:8000";
 
   useEffect(() => {
-    console.log(window.location.hash)
     const match = /access_token=([-\.\w]+)&?/g.exec(window.location.hash);
     console.log(`callback:token -> ${match && match[1]}`);
     const accessToken = match && match[1];
