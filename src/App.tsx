@@ -1,25 +1,31 @@
 import React, {useEffect, useState} from 'react';
 import logo from './logo.svg';
 import './App.css';
-import { oidcUrl, Config } from "@credify/credify-js";
+import './InputField.css';
 import ReactJson from "react-json-view";
 
 // TEST APP configuration
-const config: Config = {
-  apiKey: "bufIgxAyApnAVUdeZjyEfWXjbOhrEYTSBe3rGzqNbiDEJDtQBpALMumG2n92Q6lF",
-  mode: "sandbox" // If you are using Production, it will be `production`.
-};
 const api = "http://localhost:8000";
 
 function App() {
 
-  const loginUrl = oidcUrl(
-    "c03eaedd-2a22-42ad-a61f-c791d66b30c8",
-    "http://localhost:3000/callback",
-    ["openid", "profile", "phone", "email"],
-    config
-  );
+  const handleClick = async () => {
+    const q = phoneNumber ? `?phone_number=${phoneNumber}` : "";
+    const res = await fetch(`${api}/oidc${q}`);
+    // @ts-ignore
+    const r = await res.json();
+    console.log(r.url)
+    window.open(r.url);
+  };
 
+  // @ts-ignore
+  const handleTextChange = (event) => {
+    const value = event.target.value;
+    console.log(value);
+    setPhoneNumber(value);
+  }
+
+  const [phoneNumber, setPhoneNumber] = useState("");
   const [claims, setClaims] = useState(null);
 
   useEffect(() => {
@@ -50,14 +56,17 @@ function App() {
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-        <a
-          className="App-link"
-          href={loginUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
+
+        <div className="group">
+          <input type="text" name="phoneNumber" onChange={handleTextChange} value={phoneNumber} placeholder="+843812345678" />
+          <span className="highlight" />
+          <span className="bar" />
+          <label>Phone number (optional)</label>
+        </div>
+
+        <button className="App-link" onClick={handleClick}>
           Login with Credify
-        </a>
+        </button>
         {claims && (
           <div className="Json-wrapper">
             <ReactJson src={claims!} theme="monokai" />
