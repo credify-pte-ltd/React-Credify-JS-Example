@@ -1314,6 +1314,11 @@
   resolved "https://registry.yarnpkg.com/@sheerun/mutationobserver-shim/-/mutationobserver-shim-0.3.3.tgz#5405ee8e444ed212db44e79351f0c70a582aae25"
   integrity sha512-DetpxZw1fzPD5xUBrIAoplLChO2VB8DlL5Gg+I1IR9b2wPqYIca2WSUxL5g1vLeR4MsQq1NeWriXAVffV+U1Fw==
 
+"@stencil/core@^2.0.1":
+  version "2.4.0"
+  resolved "https://registry.yarnpkg.com/@stencil/core/-/core-2.4.0.tgz#17b45629c8986e35dcbce3f7dab7d64beede83f2"
+  integrity sha512-gU6+Yyd6O0KrCSS/O6j8KKqmRo+/Dcs2fI0+APCpbAWK+nqhwDISpdnSEfGDCLMoAC08XOZCycBRk2K1VGnEcg==
+
 "@svgr/babel-plugin-add-jsx-attribute@^4.2.0":
   version "4.2.0"
   resolved "https://registry.yarnpkg.com/@svgr/babel-plugin-add-jsx-attribute/-/babel-plugin-add-jsx-attribute-4.2.0.tgz#dadcb6218503532d6884b210e7f3c502caaa44b1"
@@ -3279,6 +3284,20 @@ create-hmac@^1.1.0, create-hmac@^1.1.2, create-hmac@^1.1.4:
     ripemd160 "^2.0.0"
     safe-buffer "^5.0.1"
     sha.js "^2.4.8"
+
+credify-web-react@^0.1.0:
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/credify-web-react/-/credify-web-react-0.1.0.tgz#4a4bfe755435fd657510afde9dd1230553e887d9"
+  integrity sha512-q4+YSWNa8NrjfO+g9JkLu999KrTxOuWNgTG8Tfv1x6CaSXGZhYoFup/8SwNhmDuHIM2f6J8W+uUj9kiRglfNsg==
+  dependencies:
+    credify-web "^0.1.0"
+
+credify-web@^0.1.0:
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/credify-web/-/credify-web-0.1.0.tgz#314b7bed7a63a983f96b139a167de9de259e560a"
+  integrity sha512-AzPCBgBD37sx2WdHgIpzz0VE3EE6By7PclDUwoMAZ2HnS+crTycV52a0I15CICiT0tCeE7y2pzAlYpV22cbWdQ==
+  dependencies:
+    "@stencil/core" "^2.0.1"
 
 cross-spawn@7.0.1:
   version "7.0.1"
